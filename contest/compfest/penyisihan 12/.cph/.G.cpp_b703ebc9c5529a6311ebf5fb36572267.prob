@@ -1,0 +1,1 @@
+{"name":"Local: G","url":"/home/fkrnwr/cp/contest/compfest/penyisihan 2011/G.cpp","tests":[{"id":1787388095114,"input":"5\n1 5 2 4 3","output":"Ya"},{"id":1787388107827,"input":"4\n27 13 31 25","output":"Tidak"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/fkrnwr/cp/contest/compfest/penyisihan 2011/G.cpp","group":"local","local":true}

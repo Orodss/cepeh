@@ -1,0 +1,1 @@
+{"name":"Local: D","url":"/home/fkrnwr/cp/contest/compfest/penyisihan 2011/D.cpp","tests":[{"id":1787390083463,"input":"2\n2 2","output":"3"},{"id":1787390099299,"input":"3\n1 2 3","output":"60"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/fkrnwr/cp/contest/compfest/penyisihan 2011/D.cpp","group":"local","local":true}
