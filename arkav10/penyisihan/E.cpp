@@ -78,16 +78,54 @@ const char move[] = {'D','R','U','L'};
 
 
 void solve(){
-    ll n;
-    cin >> n;
+    ll n,k;
+    cin >> n >> k;
     string s;
     cin >> s;
-    vector<ll> a(n + 1,0),b(n + 1, 0);
-    for(int i = n - 1; i >= 0; i--){
-        a[i] = a[i + 1];
-        b[i] = b[i + 1];
-        if()
+    vector<ll> pref(n + 1, 0);
+    for(int i = 0; i < n; i++){
+        pref[i + 1] = pref[i] - 1;
+        if(s[i] == '1') pref[i + 1] += 2; 
     }
+    ll sum = k * pref[n], ans = 0;
+    for(int i = 0; i < n; i++){
+        //[0....i]
+        if(sum == 0){
+            if(pref[i + 1] != 0) ans += k;
+            continue;
+        }else if(sum > 0){
+            if(pref[i + 1] < 0){
+                if(pref[n] >= 0){
+                    ans += k;
+                }else{
+                    ans += min((sum - 1 - pref[i + 1])/pref[n],k);
+                }
+            }else if(pref[i + 1] > 0){
+                // if(pref[i + 1] > sum){
+                //     ll sm = pref[i + 1] - sum;
+                //     if(pref[n] >= 0) ans += k;
+                //     else{
+                //         ans += min(k, sm / -pref[n]);
+                //     }
+                // }else{
+                    
+                // }
+            }
+        }else{
+            if(pref[i + 1] > 0){
+                if(pref[n] >= 0) ans += k;
+                else ans += min(k,(pref[n] - pref[i + 1])/pref[n]);
+            }else if(pref[i + 1] < 0){
+                if(pref[i + 1] > sum){
+
+                }else if(pref[i - 1] < sum){
+
+                }
+            }
+        }
+    }
+
+
 }
 
 int main() {
