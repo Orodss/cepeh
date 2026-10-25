@@ -18,6 +18,10 @@ ll query(ll idx){
     return res;
 }
 
+ll kth(int i){
+    
+}
+
 int main(){
     int n; cin >> n;
     bit.resize(n + 1);
