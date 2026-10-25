@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define gg ios::sync_with_stdio(false); cin.tie(nullptr);
+
+// output pair with cout 
+// usage example cout << p; with p as a pair
+template<typename A, typename B>
+ostream& operator<<(ostream &os, const pair<A, B> &p) {
+    return os << '(' << p.first << ", " << p.second << ')';
+}
+
+// print container 
+template<typename T_container,
+         typename T = typename enable_if<
+             !is_same<T_container, string>::value,
+             typename T_container::value_type
+         >::type>
+ostream& operator<<(ostream &os, const T_container &v) {
+    os << '{';
+    string sep;
+    for (const T &x : v)
+        os << sep << x, sep = ", ";
+    return os << '}';
+}
+
+// debug printing 
+void dbg_out() { cerr << endl; }
+template<typename Head, typename... Tail>
+void dbg_out(Head H, Tail... T) {
+    cerr << ' ' << H;
+    dbg_out(T...);
+}
+
+// debug macro, enable the local to use
+#define LOCAL
+#ifdef LOCAL
+#define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
+#else
+#define dbg(...)
+#endif
+
+// dtypes
+#define ll long long
+#define ld long double
+
+// vectors
+#define vi vector<int>
+#define vvi vector<vector<int>>
+#define vl vector<ll>
+#define vvl vector<vl>
+#define vpl vector<pair<ll, ll>>
+#define pb push_back
+#define fr first
+#define sc second
+
+// maps
+#define ml map<ll,ll>
+#define mc map<char,ll>
+
+// sort
+#define ALL(x) x.begin(), x.end()
+#define SORT(x) sort(ALL(x));
+#define RSORT(x) sort(x.rbegin(),x.rend());
+
+// edges
+const ll INF = LLONG_MAX;
+const ll NINF = LLONG_MIN;
+
+// output
+#define endl "\n"
+#define en "\n"
+#define cen cout << "\n"
+
+const int dx[] = {1,0,-1,0};
+const int dy[] = {0,1,0,-1};
+const char move[] = {'D','R','U','L'};
+
+
+void solve(){
+    ll n,p,x;
+    cin >> n >> p >> x;
+    vector<ll> v(n);
+    ll sum = 0;
+    for(auto &x : v){
+        cin >> x;
+        sum += x;
+    }
+    if(p == x){
+        cout << x;
+    }else{
+        ll sm = 0;
+        ll ans = p;
+        if(p < x) ans = -1;
+        for(int i = 0; i < n; ++i){
+            // p + k * (sum - sm) + (k + 1) * sm >= x
+            // p + k * (sum - sm + sm) + sm >= x
+            // k >= x - sm / (sum)
+            sm += v[i];
+            ll k = (x - sm - p) / sum;
+            if(k < 0) continue;
+            ll total = p + k * (sum - sm) + (k + 1) * sm;
+            if(total < x) continue;
+            if(ans != -1) ans = min(ans,total);
+            else ans = total;
+        }
+        cout << ans;
+    }
+}
+
+int main() {
+    gg;
+    int t = 1;
+    // cin >> t;
+    while(t--) solve();
+}
